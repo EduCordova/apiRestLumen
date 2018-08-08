@@ -16,6 +16,6 @@ $router->get('/', function () use ($router) {
 });
 
 
-$router->get('/Mykey',function(){
+$router->get('/key',function(){
     return str_random(32);
 });
