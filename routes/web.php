@@ -11,6 +11,8 @@
 |
 */
 
+$router->post('/users/login',['uses'=>'UserController@getToken']);
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
@@ -25,18 +27,23 @@ $router->get('/', function () use ($router) {
 //     'uses' => 'AutorController@show'
 // ]);
 
-// $router->get('/inkey',function(){
-//     return str_random(32);
-// });
+$router->get('/inkey',function(){
+    return str_random(32);
+});
 $router->group(['prefix'=>'api'],function() use ($router)
 {
     $router->get('authors',['uses'=>'AuthorController@showAllAuthors']);
-
     $router->get('authors/{id}',['uses'=>'AuthorController@showOneAuthor']);
-
     $router->post('authors',['uses'=>'AuthorController@create']);
-
-    $router->delete('authors/{id}',['uses'=>'AuthorController@delete']);
-
     $router->put('authors/{id}',['uses'=>'AuthorController@update']);
+    $router->delete('authors/{id}',['uses'=>'AuthorController@delete']);
+});
+
+
+$router->group(['middleware'=> ['auth']], function() use ($router)
+{
+    $router->get('/users', ['uses'=>'UserController@index']);
+    $router->post('/users', ['uses'=>'UserController@createUser']);
+    $router->put('/users/{id}', ['uses'=>'UserController@updateUser']);
+    $router->delete('/users/{id}', ['uses'=>'UserController@deleteUser']);
 });

@@ -20,7 +20,7 @@ class CreateAuthorsTable extends Migration
             $table->string('github');
             $table->string('twitter');
             $table->string('location');
-            $table->string('lastest_article_published');
+            $table->string('latest_article_published');
             $table->timestamps();
         });
     }
