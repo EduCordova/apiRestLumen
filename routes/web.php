@@ -39,7 +39,7 @@ $router->group(['prefix'=>'api'],function() use ($router)
     $router->delete('authors/{id}',['uses'=>'AuthorController@delete']);
 });
 
-
+$router->get('/usersk', ['uses'=>'UserController@index']);
 $router->group(['middleware'=> ['auth']], function() use ($router)
 {
     $router->get('/users', ['uses'=>'UserController@index']);
