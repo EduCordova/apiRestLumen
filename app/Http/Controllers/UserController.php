@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
   function index(Request $request) {
-    if($request->isJson())
-    {
+    // if($request->isJson())
+    // {
       $users = User::all();
       return response()->json($users,200);
-    }
-    return response()->json(['Error'=>'No Autorizado'],401); // 401 sin permisos
+    // }
+    // return response()->json(['Error'=>'No Autorizado'],401); // 401 sin permisos
   }
 
   function createUser(Request $request)
